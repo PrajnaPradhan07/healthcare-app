@@ -8,12 +8,7 @@
 
 This is a **concept-level web application** designed to help healthcare NGOs connect patients with volunteers and provide instant support through an AI-powered chatbot system.
 
-**Submission for:** Jarurat Care Internship Assignment  
-**Deadline:** 10 February, 2026  
-**Status:** ✅ Complete
-
 ---
-
 ## ✨ Features Implemented
 
 ### 1. **User Registration Form**
@@ -279,7 +274,7 @@ function updateSummary() {
 
 ---
 
-## ✅ Assignment Requirements Met
+## ✅ Requirements for this project
 
 - ✅ Simple web app created
 - ✅ Basic form (patient/volunteer/contact)
@@ -317,7 +312,3 @@ function updateSummary() {
 4. **Shows Understanding** - Demonstrates core concepts without complexity
 5. **Maintainable** - Easy to modify and improve
 
----
-
-**Status:** Ready for submission ✅  
-**Submission:** Jarurat Care Internship Program
