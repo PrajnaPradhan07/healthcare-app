@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- This tells the browser this is an HTML5 document -->
+    <!-- The head section contains metadata about the page -->
+    
+    <meta charset="UTF-8">
+    <!-- charset="UTF-8" means we're using standard Unicode encoding for all characters -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- This makes the website responsive - it will adapt to different screen sizes -->
+    <!-- initial-scale=1.0 means zoom level is 100% -->
+    
+    <title>Healthcare Support App</title>
+    <!-- This is the title that appears in the browser tab -->
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- This links to our CSS file for styling -->
+</head>
+
+<body>
+    <!-- ===== BODY CONTENT ===== -->
+    <!-- Everything the user sees goes in the body -->
+    
+    <div class="container">
+        <!-- Container to center content and limit width -->
+        
+        <header>
+            <!-- Header section at top of page -->
+            <h1>🏥 Healthcare Support Platform</h1>
+            <!-- Main heading -->
+            <p>Connect patients with volunteers and healthcare resources</p>
+            <!-- Subtitle explaining what the app does -->
+        </header>
+        
+        <!-- ===== TAB NAVIGATION ===== -->
+        <div class="nav-tabs">
+            <!-- Container for all tab buttons -->
+            
+            <button class="tab-btn active" onclick="showTab('register')">
+                <!-- 
+                    onclick="showTab('register')" means:
+                    When user clicks this button, call the JavaScript function showTab() 
+                    and pass 'register' as the parameter
+                -->
+                📝 Register
+            </button>
+            
+            <button class="tab-btn" onclick="showTab('chatbot')">
+                💬 Chatbot
+            </button>
+            
+            <button class="tab-btn" onclick="showTab('summary')">
+                📊 Summary
+            </button>
+        </div>
+        
+        <!-- ===== TAB 1: REGISTRATION FORM ===== -->
+        <div id="register" class="tab-content active">
+            <!-- id="register" - this is the unique identifier -->
+            <!-- class="tab-content active" - shows this tab by default -->
+            
+            <h2>Patient & Volunteer Registration</h2>
+            
+            <form onsubmit="handleFormSubmit(event)">
+                <!-- onsubmit="handleFormSubmit(event)" - calls function when form submitted -->
+                <!-- event = the form submission event -->
+                
+                <!-- NAME FIELD -->
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <!-- for="name" connects label to input with id="name" -->
+                     <!-- required - user MUST fill this before submitting -->
+                    <input 
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        placeholder="Enter your full name"
+                        required
+                        
+                    >
+                </div>
+                
+                <!-- EMAIL FIELD -->
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        placeholder="your.email@example.com"
+                        required
+                    >
+                    <!-- type="email" - browser checks if valid email format -->
+                </div>
+                
+                <!-- PHONE FIELD -->
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="+1 (555) 123-4567"
+                    >
+                    <!-- type="tel" - for telephone numbers (optional field) -->
+                </div>
+                
+                <!-- ROLE SELECTION -->
+                <div class="form-group">
+                    <label for="role">I am a... *</label>
+                    <select id="role" name="role" required>
+                        <!-- select = dropdown menu -->
+                        <option value="patient">🏥 Patient seeking support</option>
+                        <!-- option = choice in dropdown -->
+                        <option value="volunteer">👤 Volunteer</option>
+                    </select>
+                </div>
+                
+                <!-- MESSAGE FIELD -->
+                <div class="form-group">
+                    <label for="message">Additional Information</label>
+                    <!-- rows="4" - 4 lines tall -->
+                    <textarea 
+                        id="message" 
+                        name="message"
+                        placeholder="Tell us more about yourself or your needs..."
+                        rows="4"
+                        
+                    ></textarea>
+                </div>
+                
+                <!-- SUBMIT BUTTON -->
+                <button type="submit">Submit Registration</button>
+                <!-- type="submit" - clicking this submits the form -->
+            </form>
+        </div>
+        
+        <!-- ===== TAB 2: CHATBOT ===== -->
+        <div id="chatbot" class="tab-content">
+            <h2>Support Chatbot - Ask Me Anything!</h2>
+            
+            <div class="chat-box">
+                <!-- Chat box container -->
+                
+                <div class="messages" id="messagesContainer">
+                    <!-- id="messagesContainer" - where all messages appear -->
+                    <!-- Messages will be added here by JavaScript -->
+                </div>
+                
+                <div class="chat-input-group">
+                    <!-- Input area at bottom of chat -->
+                    
+                    <input 
+                        type="text" 
+                        id="chatInput" 
+                        placeholder="Ask about services, registration, volunteering..."
+                    >
+                    
+                    <button onclick="sendChatMessage()">Send</button>
+                    <!-- onclick="sendChatMessage()" - calls function when clicked -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- ===== TAB 3: SUMMARY ===== -->
+        <div id="summary" class="tab-content">
+            <h2>Data Summary & Analytics</h2>
+            
+            <div class="stats">
+                <!-- Statistics cards -->
+                
+                <div class="stat-card">
+                    <h3 id="totalCount">0</h3>
+                    <!-- id="totalCount" - we'll update this with JavaScript -->
+                    <p>Total Registrations</p>
+                </div>
+                
+                <div class="stat-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <h3 id="patientCount">0</h3>
+                    <p>Patients</p>
+                </div>
+                
+                <div class="stat-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h3 id="volunteerCount">0</h3>
+                    <p>Volunteers</p>
+                </div>
+            </div>
+            
+            <h3>Recent Submissions</h3>
+            <div class="submissions-list" id="submissionsList">
+                <!-- id="submissionsList" - where submissions appear -->
+                <p style="color: #999;">No submissions yet. Be the first to register!</p>
+            </div>
+        </div>
+    </div>
+ <script src="script.js"></script>
+    
+    
+</body>
+</html>
